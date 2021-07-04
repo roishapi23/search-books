@@ -1,0 +1,27 @@
+.header {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+}
+
+span,a{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+a {
+  padding-left: 15px;
+  padding-right: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: #3481ce;
+  cursor: pointer;
+}

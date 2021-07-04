@@ -1,0 +1,53 @@
+
+<div class="d-flex justify-content-between dialog-header">
+  <h1 class="d-flex align-items-center">
+    {{ book.title }}
+    <!-- wishlist add/remove -->
+    <mat-icon class="pointer px-2" (click)="handleWishlist(book)" [matTooltip]="isOnWishlist(book) ? 'Remove from wishlist' : 'Add to wishlist' ">
+      {{ isOnWishlist(book) ? 'favorite' : 'favorite_border'}}
+    </mat-icon>
+  </h1>
+  <mat-icon class="pointer mt-1" style="margin-bottom: 16px;" (click)="dialogRef.close()">cancel</mat-icon>
+</div>
+<div mat-dialog-content>
+  <header class="row">
+    <!-- book details -->
+    <div class="col-lg-8">
+      <p>
+        {{book.subtitle}} <br>
+        <b>Authors: </b>
+        <span *ngFor="let author of book.authors; let i = index">{{ author }}{{(book.authors.length-1) == i ? '.':', '}}</span>
+      </p>
+
+      <p *ngIf="book.description">
+        <b>Description: </b>
+        {{book.description}}.
+      </p>
+      <p *ngIf="book.categories">
+        <b>Categories: </b>
+        <span *ngFor="let category of book.categories; let i = index">{{ category }}{{(book.categories.length-1) == i ? '.':', '}}</span>
+      </p>
+
+      <p *ngIf="book.pageCount">
+        <b>Pages: </b>
+        {{book.pageCount}}.
+      </p>
+      <p>
+        <b>Language: </b>
+        {{book.language}}.
+      </p>
+
+      <p *ngIf="book.previewLink">
+        <a target="_blank" rel="noopener noreferrer" [href]="book.previewLink">For preview click here</a>
+      </p>
+
+    </div>
+
+    <!-- book image -->
+    <img class="col-lg-4" [src]="book.imageLinks?.thumbnail">
+
+  </header>
+</div>
+
+
+

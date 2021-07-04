@@ -1,0 +1,19 @@
+<section class="d-flex justify-content-center align-items-center">
+  <div class="welcome">
+    <div class="card text-center">
+      <div class="card-header py-4">
+        welcome !
+      </div>
+      <div class="card-body p-5">
+        <p class="card-text">Please enter your user name</p>
+        <span class="d-flex justify-content-center">
+          <input type="text" class="form-control" placeholder="Username" [formControl]="username" required>
+        </span>
+        <div  *ngIf="username.errors?.required && (username.touched || username.dirty || showError)" class="error"> * User name is required</div>
+      </div>
+      <div class="card-footer py-4">
+        <a type="button" [ngStyle]="{'opacity': username.valid ? '1' : '0.7'}" [routerLink]="username.valid ? ['/'] : [] " (click)="handleNavClick()" class="btn btn-primary">Enter</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+
+<!-- loading layer -->
+<ngx-spinner>
+  <p style="font-size: 20px; color: white">Loading books ...</p>
+</ngx-spinner>
+
+<!-- user search input -->
+<div class="d-flex justify-content-center">
+  <mat-form-field>
+    <mat-label>Search book</mat-label>
+    <input type="text" matInput [formControl]="searchInput">
+  </mat-form-field>
+</div>
+
+<!-- message display -->
+<div *ngIf="!isDataExist" class="d-flex justify-content-center mt-5">
+  <h2>
+    <b>
+      {{displayedMessage}}
+    </b>
+  </h2>
+</div>
+
+<!--  books cards -->
+
+<div class="row">
+
+  <div class="col-xl-4 mb-3" *ngFor="let book of books | async">
+    <div class="card">
+      <div class="card-body row">
+        <span class="text col-sm-6">
+          <h5>
+            <b>
+              {{book.title}}
+            </b>
+          </h5>
+          <p class="card-text">{{book.subtitle}}</p>
+          <p class="pb-5">Authors :
+            <span *ngFor="let author of book.authors; let i = index">{{ author }}{{(book.authors.length-1) == i ? '.':', '}}</span>
+          </p>
+          <cite class="text-muted">
+            Published date: {{ prettyDate(book.publishedDate) }}
+          </cite>
+        </span>
+        <span class="img col-sm-6 d-flex justify-content-center align-items-start">
+          <img class="card-img-top" [src]="book.imageLinks?.thumbnail">
+        </span>
+
+      </div>
+      <div class="card-footer d-flex align-items-center justify-content-around">
+        <button class="btn btn-primary btn-sm" (click)="openBookDetailsDialog(book)">More info</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- pagination -->
+<mat-paginator [hidden]="!isDataExist" [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
+
